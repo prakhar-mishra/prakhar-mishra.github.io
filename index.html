@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Prakhar Mishra</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name – Resume</title>
 
   <style>
     :root {
-      --bg: #f5f5f7;
+      --bg: #f9fafb;
       --card-bg: #ffffff;
       --text-main: #111827;
       --text-muted: #6b7280;
@@ -15,6 +15,7 @@
       --border: #e5e7eb;
       --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Helvetica, Arial, sans-serif;
+      --max-width: 900px;
     }
 
     * {
@@ -23,92 +24,123 @@
 
     body {
       margin: 0;
-      padding: 0;
       font-family: var(--font-main);
       background: var(--bg);
       color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
     }
 
-    .page {
-      max-width: 900px;
-      margin: 32px auto;
-      padding: 0 16px 48px;
-    }
-
-    .resume-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-      padding: 32px 28px 32px;
-    }
-
-    @media (max-width: 640px) {
-      .resume-card {
-        padding: 24px 18px 24px;
-      }
-    }
-
-    /* Header */
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .header-main {
-      flex: 1 1 220px;
-    }
-
-    .name {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      margin: 0 0 4px;
-    }
-
-    .title {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-
-    .tagline {
-      margin-top: 8px;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .header-contact {
-      flex: 1 1 220px;
-      text-align: right;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .header-contact a {
+    a {
       color: var(--accent);
       text-decoration: none;
     }
 
-    .header-contact a:hover {
+    a:hover {
       text-decoration: underline;
     }
 
-    .contact-item {
+    /* Layout */
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(249, 250, 251, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .top-bar-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      padding: 4px 8px;
+      border-radius: 12px;
+    }
+
+    .nav-links a:hover {
+      background: #e5e7eb;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .hero-name {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+
+    .hero-title {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin: 0 0 10px;
+    }
+
+    .hero-summary {
+      max-width: 650px;
+      font-size: 0.96rem;
+      color: var(--text-main);
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .hero-contact {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero-contact div {
       margin-bottom: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .top-bar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
     /* Sections */
 
-    .section {
-      margin-top: 22px;
+    section {
+      margin-bottom: 28px;
     }
 
     .section-title {
@@ -126,7 +158,7 @@
       font-size: 0.95rem;
     }
 
-    /* Experience / projects */
+    /* Experience / list items */
 
     .item {
       margin-bottom: 16px;
@@ -135,16 +167,19 @@
     .item-header {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
-      font-size: 0.95rem;
     }
 
-    .item-title {
+    .item-main {
+      min-width: 0;
+    }
+
+    .item-role {
       font-weight: 600;
     }
 
-    .item-subtitle {
+    .item-org {
       font-size: 0.9rem;
       color: var(--text-muted);
     }
@@ -153,6 +188,7 @@
       font-size: 0.85rem;
       color: var(--text-muted);
       text-align: right;
+      white-space: nowrap;
     }
 
     .item-description {
@@ -168,17 +204,28 @@
       margin-bottom: 4px;
     }
 
-    /* Skills */
+    /* Skills grid */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px 20px;
+    }
+
+    .skill-group-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
 
     .pill-group {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .pill {
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: #f9fafb;
@@ -186,10 +233,12 @@
       white-space: nowrap;
     }
 
-    /* Footer note */
+    /* Small footer */
 
-    .footer-note {
-      margin-top: 20px;
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 16px 20px;
       font-size: 0.8rem;
       color: var(--text-muted);
       text-align: right;
@@ -197,220 +246,417 @@
   </style>
 </head>
 <body>
-  <div class="page">
-    <main class="resume-card" aria-label="Resume">
-      <!-- HEADER -->
-      <header class="header">
-        <section class="header-main">
-          <h1 class="name">Your Name</h1>
-          <p class="title">Senior Software Engineer</p>
-          <p class="tagline">
-            8+ years building scalable backend systems, AI-driven workflows,
-            and product-first platforms across startups, fintech, and large-scale tech.
-          </p>
-        </section>
+  <!-- Top nav similar to deshraj.xyz -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="logo">Prakhar Mishra</div>
+      <nav class="nav-links">
+        <a href="#achievements">Achievements</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#cv">CV</a>
+      </nav>
+    </div>
+  </div>
 
-        <section class="header-contact">
-          <div class="contact-item">City, Country · Open to remote</div>
-          <div class="contact-item">
-            <a href="mailto:you@example.com">you@example.com</a>
-          </div>
-          <div class="contact-item">
-            <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">
-              github.com/yourusername
+  <main>
+    <!-- Hero / About -->
+    <section class="hero" id="about">
+      <h1 class="hero-name">Prakhar Mishra</h1>
+      <p class="hero-title">Software Development Engineer II @ Amazon</p>
+      <div class="hero-summary">
+        Software engineer with experience across fintech, logistics, and large-scale
+        consumer products. I design and build reliable backend systems, work
+        hands-on with AWS and distributed services, and enjoy simplifying complex
+        workflows into maintainable code.
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-contact">
+          <div>📞 <a href="tel:+917827183040">(+91) 78271 83040</a></div>
+          <div>✉️ <a href="mailto:prakhermishra777@gmail.com">prakhermishra777@gmail.com</a></div>
+          <div>
+            🔗
+            <a href="https://www.linkedin.com/in/PrakharMishra777" target="_blank" rel="noreferrer">
+              linkedin.com/in/PrakharMishra777
             </a>
           </div>
-          <div class="contact-item">
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noreferrer">
-              linkedin.com/in/yourprofile
-            </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements">
+      <h2 class="section-title">Achievements</h2>
+      <div class="section-body">
+        <ul>
+          <li>
+            Research paper accepted at the International Conference on New Frontiers
+            of Engineering Science and Technology (NFEST), Society for Fusion of Science
+            and Technology, DTU.
+          </li>
+          <li>Terra Technica Hackathon – Winner (2016, 2017), NIT Delhi.</li>
+          <li>GCET Hackathon – Winner (Apr 2017), Galgotias College of Engineering.</li>
+          <li>Smart India Hackathon – Finalist (Apr 2017), Department of Atomic Energy, India.</li>
+          <li>Inter College Chess Tournament – Winner (2014, 2016), JSSATE Noida.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="section-body">
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Software Dev Engineer II</div>
+              <div class="item-org">Amazon.com Services LLC</div>
+            </div>
+            <div class="item-meta">
+              Nov 2022 – Present<br />
+              (Retail Gift Card Experience)
+            </div>
           </div>
-          <!-- Optional portfolio link -->
-          <!-- <div class="contact-item">
-            <a href="https://yourdomain.com" target="_blank" rel="noreferrer">
-              yourdomain.com
-            </a>
-          </div> -->
-        </section>
-      </header>
+          <div class="item-description">
+            <ul>
+              <li>
+                Design, develop, and implement features for the retail gift card
+                experience across devices and platforms.
+              </li>
+              <li>
+                Build scalable, secure and high-performance solutions integrated with
+                Amazon-wide payment systems and compliance requirements.
+              </li>
+              <li>
+                Develop backend architecture and REST APIs, optimizing performance and
+                reliability.
+              </li>
+              <li>
+                Drive operational excellence by diagnosing and resolving production
+                issues, conducting RCAs, and implementing long-term fixes.
+              </li>
+              <li>
+                Contribute to cost optimization, monitoring, and system scalability
+                while following best practices in security and DevOps.
+              </li>
+              <li>
+                Participate in documentation, code reviews, and mentoring to maintain
+                a high engineering bar.
+              </li>
+            </ul>
+          </div>
+        </article>
 
-      <!-- SUMMARY -->
-      <section class="section">
-        <h2 class="section-title">Summary</h2>
-        <div class="section-body">
-          Product-minded engineer experienced in designing, shipping, and
-          scaling backend services and AI features. Comfortable owning systems
-          end-to-end—from architecture and implementation to mentoring and
-          reviewing other engineers’ work.
-        </div>
-      </section>
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Software Development Engineer II</div>
+              <div class="item-org">Amazon Development Center India Pvt. Ltd.</div>
+            </div>
+            <div class="item-meta">Sep 2021 – Nov 2022</div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Launched Amazon Exports from Singapore to Malaysia, collaborating with
+                global PM and TPM teams to translate launch requirements into scalable
+                services.
+              </li>
+              <li>
+                Worked on Amazon Android and iOS apps to build export-specific menus
+                and configuration.
+              </li>
+              <li>
+                Developed a highly available microservice to filter irrelevant products
+                in online notification campaigns (8M requests/day, ~100ms latency),
+                improving campaign quality and cutting ~3M irrelevant product mails per week.
+              </li>
+              <li>
+                Built a self-service UI dashboard to automate updates to cross-border
+                document templates, saving ~4 SDE-weeks per document.
+              </li>
+              <li>
+                Implemented automated data ingestion pipelines using Datacraft and EDX and
+                worked with Tier-1 services using Carnaval/iGraph monitoring.
+              </li>
+              <li>
+                Mentored SDEs and served on hiring panels; performed code and design reviews
+                to uphold quality.
+              </li>
+            </ul>
+          </div>
+        </article>
 
-      <!-- EXPERIENCE -->
-      <section class="section">
-        <h2 class="section-title">Experience</h2>
-        <div class="section-body">
-          <article class="item">
-            <div class="item-header">
-              <div>
-                <div class="item-title">Software Development Engineer II</div>
-                <div class="item-subtitle">Amazon · Payments / Fintech</div>
-              </div>
-              <div class="item-meta">2021 – Present · Location</div>
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Technology Analyst</div>
+              <div class="item-org">Goldman Sachs Services Pvt. Ltd.</div>
             </div>
-            <div class="item-description">
-              <ul>
-                <li>
-                  Designed and built scalable backend services handling
-                  high-volume payment workflows with strict latency and
-                  reliability SLAs.
-                </li>
-                <li>
-                  Led architecture and design reviews, mentoring junior
-                  engineers and improving code quality across the team.
-                </li>
-                <li>
-                  Collaborated with product and operations to ship features
-                  that reduced manual work and improved customer experience.
-                </li>
-              </ul>
-            </div>
-          </article>
+            <div class="item-meta">Jul 2020 – Sep 2021</div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Developed and streamlined firm-wide taxation systems to handle BREXIT-related
+                changes.
+              </li>
+              <li>
+                Built high-frequency trading taxation solutions for Italian markets with
+                time-sensitive daily feeds.
+              </li>
+              <li>
+                Implemented systems to calculate creditable tax for millions of records per day.
+              </li>
+              <li>
+                Contributed to upgrading the technology stack and collaborated with global teams
+                to build scalable solutions.
+              </li>
+            </ul>
+          </div>
+        </article>
 
-          <article class="item">
-            <div class="item-header">
-              <div>
-                <div class="item-title">Software Engineer</div>
-                <div class="item-subtitle">Startup / Investment Bank</div>
-              </div>
-              <div class="item-meta">2017 – 2021 · Location</div>
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Software Development Engineer</div>
+              <div class="item-org">OFB Tech Pvt. Ltd.</div>
             </div>
-            <div class="item-description">
-              <ul>
-                <li>
-                  Built loan management and payment automation systems used by
-                  internal teams and external partners.
-                </li>
-                <li>
-                  Worked across the stack: backend APIs, data models, and
-                  integrations with third-party services.
-                </li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </section>
+            <div class="item-meta">Nov 2018 – Jun 2020</div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Built a framework around Neo4j’s Cypher in Spring to create a generic
+                relationship management system used by multiple teams.
+              </li>
+              <li>
+                Integrated ICICI IMPS APIs to automate loan sanction payments and verify
+                client bank accounts.
+              </li>
+              <li>
+                Designed and implemented a rule-based loan management architecture to
+                support various loan products.
+              </li>
+              <li>
+                Developed an employee target tracking dashboard for managers to set and
+                monitor targets.
+              </li>
+            </ul>
+          </div>
+        </article>
 
-      <!-- PROJECTS -->
-      <section class="section">
-        <h2 class="section-title">Selected Projects</h2>
-        <div class="section-body">
-          <article class="item">
-            <div class="item-header">
-              <div>
-                <div class="item-title">Cosmos – AI Procurement Platform</div>
-                <div class="item-subtitle">Founder / Builder</div>
-              </div>
-              <div class="item-meta">2024 – Present</div>
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">SDET I</div>
+              <div class="item-org">Rivigo Services Pvt. Ltd.</div>
             </div>
-            <div class="item-description">
-              <ul>
-                <li>
-                  Building an AI-powered platform to generate RFQs, analyze
-                  supplier proposals, and surface negotiation insights for SMB
-                  procurement teams.
-                </li>
-                <li>
-                  Implemented backend using modern APIs, vector search, and LLM
-                  workflows to parse and compare unstructured documents.
-                </li>
-              </ul>
-            </div>
-          </article>
+            <div class="item-meta">Jun 2018 – Nov 2018</div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Maintained the automation suite to streamline development and ensure
+                code quality and functional coverage.
+              </li>
+              <li>
+                Worked closely with developers to understand end-to-end workflows and
+                improve test coverage.
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
 
-          <article class="item">
-            <div class="item-header">
-              <div>
-                <div class="item-title">Automated Payment System (Penny Drop)</div>
-              </div>
-              <div class="item-meta">Side / Client Project</div>
+    <!-- Education -->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="section-body">
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">B.Tech in Computer Science & Engineering</div>
+              <div class="item-org">JSS Academy of Technical Education, Noida</div>
             </div>
-            <div class="item-description">
-              <ul>
-                <li>
-                  Automated loan sanction payouts and bank-account verification
-                  by integrating with IMPS APIs.
-                </li>
-              </ul>
+            <div class="item-meta">
+              2014 – 2018<br />
+              Aggregate: 79.90%
             </div>
-          </article>
-        </div>
-      </section>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      <!-- SKILLS -->
-      <section class="section">
-        <h2 class="section-title">Skills</h2>
-        <div class="section-body">
-          <div><strong>Languages &amp; Backend</strong></div>
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="section-body">
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Automated Payment System (Penny Drop)</div>
+            </div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Automated loan sanction transactions and client bank account verification
+                by integrating ICICI’s IMPS APIs.
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Loan Management System</div>
+            </div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                End-to-end loan management system for creating and maintaining diverse loan
+                products across a financial organization.
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Relationship Management System</div>
+            </div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Generic relationship management system on graph DB to manage changing roles,
+                groups, products, and authorizations, with real-time insights into employee
+                performance.
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Automated MeSH Annotations (Research)</div>
+            </div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Developed hierarchical ML models for automated multi-label classification
+                of biomedical and health-related articles.
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-main">
+              <div class="item-role">Face Recognition Software for CCTV</div>
+            </div>
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Facial recognition system for CCTV feeds to identify intruders and track
+                employees within an organization.
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="section-body skills-grid">
+        <div>
+          <div class="skill-group-title">Languages</div>
           <div class="pill-group">
             <span class="pill">Java</span>
-            <span class="pill">Python</span>
-            <span class="pill">TypeScript</span>
-            <span class="pill">Node.js</span>
-            <span class="pill">REST / GraphQL</span>
+            <span class="pill">Python (prior experience)</span>
           </div>
+        </div>
 
-          <div style="margin-top: 8px;"><strong>Data &amp; Infra</strong></div>
+        <div>
+          <div class="skill-group-title">Frameworks & Web</div>
           <div class="pill-group">
-            <span class="pill">SQL / NoSQL</span>
-            <span class="pill">AWS</span>
-            <span class="pill">Kafka / Queues</span>
-            <span class="pill">Docker</span>
-            <span class="pill">Microservices</span>
+            <span class="pill">Spring MVC</span>
+            <span class="pill">AngularJS</span>
+            <span class="pill">ReactJS</span>
+            <span class="pill">CSS</span>
           </div>
+        </div>
 
-          <div style="margin-top: 8px;"><strong>AI / Product</strong></div>
+        <div>
+          <div class="skill-group-title">AWS & Cloud</div>
           <div class="pill-group">
-            <span class="pill">LLM-powered features</span>
-            <span class="pill">Prompt design</span>
-            <span class="pill">System design</span>
-            <span class="pill">Architecture reviews</span>
+            <span class="pill">EC2</span>
+            <span class="pill">Lambda</span>
+            <span class="pill">CloudWatch</span>
+            <span class="pill">SQS</span>
+            <span class="pill">SNS</span>
+            <span class="pill">EDX</span>
           </div>
         </div>
-      </section>
 
-      <!-- EDUCATION -->
-      <section class="section">
-        <h2 class="section-title">Education</h2>
-        <div class="section-body">
-          <article class="item">
-            <div class="item-header">
-              <div>
-                <div class="item-title">B.Tech in Computer Science</div>
-                <div class="item-subtitle">Your University Name</div>
-              </div>
-              <div class="item-meta">2013 – 2017</div>
-            </div>
-          </article>
+        <div>
+          <div class="skill-group-title">Databases & Storage</div>
+          <div class="pill-group">
+            <span class="pill">MySQL</span>
+            <span class="pill">Neo4j</span>
+            <span class="pill">MongoDB</span>
+            <span class="pill">Elasticsearch</span>
+            <span class="pill">Redis</span>
+            <span class="pill">DynamoDB</span>
+            <span class="pill">S3</span>
+          </div>
         </div>
-      </section>
 
-      <!-- OPTIONAL: EXTRA -->
-      <!--
-      <section class="section">
-        <h2 class="section-title">Highlights</h2>
-        <div class="section-body">
-          <ul>
-            <li>Multiple internal hackathon wins for prototyping AI features.</li>
-            <li>Mentored junior engineers across teams.</li>
-          </ul>
+        <div>
+          <div class="skill-group-title">Tools & IDEs</div>
+          <div class="pill-group">
+            <span class="pill">IntelliJ</span>
+            <span class="pill">PyCharm</span>
+            <span class="pill">Visual Studio</span>
+            <span class="pill">Jenkins</span>
+            <span class="pill">Serenity</span>
+            <span class="pill">Bitbucket</span>
+          </div>
         </div>
-      </section>
-      -->
-
-      <div class="footer-note">
-        Updated: 2025 
       </div>
-    </main>
-  </div>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+      <h2 class="section-title">CV</h2>
+      <div class="section-body">
+        <p>
+          You can download a detailed CV here:
+          <!-- Update this href to the actual PDF path in your repo -->
+          <a href="Prakhar_Mishra_Resume.pdf" target="_blank" rel="noreferrer">
+            View / Download CV (PDF)
+          </a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Ⓒ Prakhar Mishra · 
+  </footer>
 </body>
 </html>
